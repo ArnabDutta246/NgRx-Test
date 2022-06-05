@@ -1,0 +1,7 @@
+{
+  "name": "ngrx-test",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
