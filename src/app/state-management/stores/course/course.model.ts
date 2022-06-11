@@ -3,3 +3,7 @@ export interface CourseItem {
     department: string;
     name: string;
 }
+
+export interface State {
+    readonly courses: Array<CourseItem>
+}

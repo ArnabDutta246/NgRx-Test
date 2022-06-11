@@ -16,3 +16,5 @@ export class AddCourseActions implements Action {
 }
 
 /* =================== All Actions Class Export ========================== */
+
+export type CourseAction = AddCourseActions;
