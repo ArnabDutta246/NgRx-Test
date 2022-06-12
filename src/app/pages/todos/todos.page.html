@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>todos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>ALL TODOS LIST</ion-list-header>
+    <ion-item *ngFor="let todo of allTodos$ | async">
+      <ion-label slot="start" class="ion-text-wrap">
+        {{todo.content}}
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="removeTodo(todo)">
+          <ion-icon name="trash" color="danger"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

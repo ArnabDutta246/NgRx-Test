@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { Todo } from "./todo.model";
-import { addTodo, removeTodo } from "./todo.actions";
+import { addTodo, loadTodo, loadTodosFailure, loadTodosSuccess, removeTodo } from "./todo.actions";
 
 //===============[Define state]==================
 export interface TodoState {
@@ -19,9 +19,13 @@ export const todoReducer = createReducer(
     // Supply the initial State
     initState,
     // Add the new todo to the list
-    on(addTodo, (state, { content }) => ({ ...state, todos: [...state.todos, { id: Date.now().toString(), content: content }] })),
-    // Remove the todo from the list
+    on(addTodo, (state, { title }) => ({ ...state, todos: [...state.todos, { id: new Date().getMilliseconds(), title: title }] })),
+    // Remove the todo from the list 
     on(removeTodo, (state, { id }) => ({ ...state, todos: state.todos.filter(todo => todo.id != id) })),
     // Trigger loading the todos
-    on(removeTodo, (state) => ({ ...state, status: 'loading' })),
+    on(loadTodo, (state) => ({ ...state, status: 'loading' })),
+    // Load todos success
+    on(loadTodosSuccess, (state, { todos }) => ({ ...state, todos: todos, error: null, status: 'success' })),
+    // Load todos Failure
+    on(loadTodosFailure, (state, { error }) => ({ ...state, error: error, status: 'error' })),
 )
